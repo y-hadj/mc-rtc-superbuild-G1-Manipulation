@@ -11,16 +11,51 @@ AddProject(
 if(WITH_G1)
   AddProject(
     g1_mj_description
-    GITHUB Noceo200/g1_mj_description
-    GIT_TAG origin/main
+    GITHUB y-hadj/g1_mj_description
+    GIT_TAG main
     DEPENDS mc_mujoco
   )
   
+  AddProject(unitree_sdk2
+    GITHUB y-hadj/unitree_sdk2
+    GIT_TAG main
+  )
+
   AddProject(mc_unitree2
     GITHUB y-hadj/mc_unitree2_wG1
     GIT_TAG master
-    DEPENDS mc_rtc 
+    DEPENDS mc_rtc unitree_sdk2
     CMAKE_ARGS -DGENERATE_G1_REVO2_CONTROLLER=ON -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+  )
+
+  AddProject(mc_external_forces_observer
+    GITHUB y-hadj/mc_external_forces_observer
+    GIT_TAG main
+    DEPENDS mc_rtc
+  )
+
+  AddProject(mc_joystick_plugin
+    GITHUB isri-aist/mc_joystick_plugin
+    GIT_TAG origin/main
+    DEPENDS mc_rtc
+  )
+
+  AddProject(FootSteps_Planner
+    GITHUB isri-aist/FootSteps_Planner
+    GIT_TAG origin/main
+    DEPENDS mc_rtc
+  )
+
+  AddProject(pendulum_feasibility_solver
+    GITHUB isri-aist/pendulum_feasibility_solver
+    GIT_TAG origin/master
+    DEPENDS SpaceVecAlg eigen-quadprog
+  )
+
+  AddProject(ismpc_walking
+    GITHUB y-hadj/ismpc_walking
+    GIT_TAG main
+    DEPENDS mc_rtc pendulum_feasibility_solver mc_joystick_plugin FootSteps_Planner
   )
 endif()
 

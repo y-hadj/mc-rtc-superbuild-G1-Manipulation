@@ -13,7 +13,7 @@ AddCatkinProject(
 
 AddProject(
   mc_g1
-  GITHUB Noceo200/mc_g1
-  GIT_TAG origin/main
+  GITHUB y-hadj/mc_g1
+  GIT_TAG main
   DEPENDS g1_description mc_rtc
 )
