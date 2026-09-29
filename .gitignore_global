@@ -1,0 +1,18 @@
+# Global git ignore rules for the mc-rtc-superbuild workspace.
+
+# gui
+imgui.ini
+
+# clangd background index
+.cache/
+
+# build symlinks
+/build
+/compile_commands.json
+
+# ros ws
+/catkin_data_ws/.gitignore
+/catkin_ws/.gitignore
+/catkin_data_ws/log/
+/catkin_ws/log/
+/catkin_data_ws/compile_commands.json

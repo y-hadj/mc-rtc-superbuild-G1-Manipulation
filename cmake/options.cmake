@@ -22,9 +22,9 @@ if(WIN32)
   )
 endif()
 
-option(LINK_BUILD_AND_SRC "Create symbolic links to/from build and src folders" ON)
+option(LINK_BUILD_AND_SRC "Create symbolic links to/from build and src folders" OFF)
 option(LINK_COMPILE_COMMANDS
-       "Create a symbolic to compile_commands.json in the source folder" ON
+       "Create a symbolic to compile_commands.json in the source folder" OFF
 )
 
 set(BUILD_PARALLEL_JOBS

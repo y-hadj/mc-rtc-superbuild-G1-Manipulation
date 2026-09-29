@@ -190,6 +190,25 @@ else()
   message(STATUS "Detected shell: ${CURRENT_SHELL}")
 endif()
 
+# see .gitignore_global. Only set when the user has no global excludes file yet.
+set(SUPERBUILD_GITIGNORE "${PROJECT_SOURCE_DIR}/.gitignore_global")
+execute_process(
+  COMMAND git config --global --get core.excludesFile
+  OUTPUT_VARIABLE CURRENT_EXCLUDES
+  OUTPUT_STRIP_TRAILING_WHITESPACE
+  RESULT_VARIABLE NO_EXCLUDES
+)
+if(NO_EXCLUDES)
+  execute_process(COMMAND git config --global core.excludesFile "${SUPERBUILD_GITIGNORE}")
+  message(STATUS "git: global excludes file set to ${SUPERBUILD_GITIGNORE}")
+elseif(NOT CURRENT_EXCLUDES STREQUAL SUPERBUILD_GITIGNORE)
+  message(
+    WARNING
+      "git core.excludesFile is already ${CURRENT_EXCLUDES}; left unchanged. "
+      "Add the rules from ${SUPERBUILD_GITIGNORE} to it to hide superbuild clutter."
+  )
+endif()
+
 set(FINAL_MESSAGE
     "**
 ** Source will be cloned in ${SOURCE_DESTINATION}
